@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16787694810C2D9B19664BF4 /* libPods-StarsSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E257B5C1A4C69F8A7AB011DF /* libPods-StarsSwift.a */; };
 		684AFF4D1E7E9A9A00D597DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684AFF4C1E7E9A9A00D597DB /* AppDelegate.swift */; };
 		684AFF4F1E7E9A9A00D597DB /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 684AFF4E1E7E9A9A00D597DB /* Shader.fsh */; };
 		684AFF511E7E9A9A00D597DB /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 684AFF501E7E9A9A00D597DB /* Shader.vsh */; };
@@ -14,9 +15,12 @@
 		684AFF561E7E9A9A00D597DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684AFF541E7E9A9A00D597DB /* Main.storyboard */; };
 		684AFF581E7E9A9A00D597DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 684AFF571E7E9A9A00D597DB /* Assets.xcassets */; };
 		684AFF5B1E7E9A9A00D597DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684AFF591E7E9A9A00D597DB /* LaunchScreen.storyboard */; };
+		684AFF651E7ED28100D597DB /* StarsRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684AFF641E7ED28100D597DB /* StarsRender.swift */; };
+		684AFF671E7ED64100D597DB /* StarsRenderLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684AFF661E7ED64100D597DB /* StarsRenderLoop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4CE12BFF0A5896EB3E120E46 /* Pods-StarsSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarsSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarsSwift/Pods-StarsSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		684AFF491E7E9A9A00D597DB /* StarsSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarsSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		684AFF4C1E7E9A9A00D597DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		684AFF4E1E7E9A9A00D597DB /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
@@ -26,6 +30,11 @@
 		684AFF571E7E9A9A00D597DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		684AFF5A1E7E9A9A00D597DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		684AFF5C1E7E9A9A00D597DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		684AFF631E7ED11500D597DB /* GVRK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GVRK-Bridging-Header.h"; sourceTree = "<group>"; };
+		684AFF641E7ED28100D597DB /* StarsRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarsRender.swift; sourceTree = "<group>"; };
+		684AFF661E7ED64100D597DB /* StarsRenderLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarsRenderLoop.swift; sourceTree = "<group>"; };
+		8C1283298CA12E4031991618 /* Pods-StarsSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarsSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarsSwift/Pods-StarsSwift.release.xcconfig"; sourceTree = "<group>"; };
+		E257B5C1A4C69F8A7AB011DF /* libPods-StarsSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StarsSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +42,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16787694810C2D9B19664BF4 /* libPods-StarsSwift.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03BB693842415723BDD28053 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4CE12BFF0A5896EB3E120E46 /* Pods-StarsSwift.debug.xcconfig */,
+				8C1283298CA12E4031991618 /* Pods-StarsSwift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		684AFF401E7E9A9A00D597DB = {
 			isa = PBXGroup;
 			children = (
 				684AFF4B1E7E9A9A00D597DB /* StarsSwift */,
 				684AFF4A1E7E9A9A00D597DB /* Products */,
+				03BB693842415723BDD28053 /* Pods */,
+				7A0215AFE2B74266EFC9778B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,16 +79,27 @@
 		684AFF4B1E7E9A9A00D597DB /* StarsSwift */ = {
 			isa = PBXGroup;
 			children = (
-				684AFF4C1E7E9A9A00D597DB /* AppDelegate.swift */,
-				684AFF4E1E7E9A9A00D597DB /* Shader.fsh */,
 				684AFF501E7E9A9A00D597DB /* Shader.vsh */,
-				684AFF521E7E9A9A00D597DB /* GameViewController.swift */,
+				684AFF4E1E7E9A9A00D597DB /* Shader.fsh */,
+				684AFF631E7ED11500D597DB /* GVRK-Bridging-Header.h */,
 				684AFF541E7E9A9A00D597DB /* Main.storyboard */,
-				684AFF571E7E9A9A00D597DB /* Assets.xcassets */,
 				684AFF591E7E9A9A00D597DB /* LaunchScreen.storyboard */,
+				684AFF571E7E9A9A00D597DB /* Assets.xcassets */,
 				684AFF5C1E7E9A9A00D597DB /* Info.plist */,
+				684AFF4C1E7E9A9A00D597DB /* AppDelegate.swift */,
+				684AFF641E7ED28100D597DB /* StarsRender.swift */,
+				684AFF661E7ED64100D597DB /* StarsRenderLoop.swift */,
+				684AFF521E7E9A9A00D597DB /* GameViewController.swift */,
 			);
 			path = StarsSwift;
+			sourceTree = "<group>";
+		};
+		7A0215AFE2B74266EFC9778B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E257B5C1A4C69F8A7AB011DF /* libPods-StarsSwift.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +109,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 684AFF5F1E7E9A9A00D597DB /* Build configuration list for PBXNativeTarget "StarsSwift" */;
 			buildPhases = (
+				A3D445301CA8A8C5CB98A820 /* [CP] Check Pods Manifest.lock */,
 				684AFF451E7E9A9A00D597DB /* Sources */,
 				684AFF461E7E9A9A00D597DB /* Frameworks */,
 				684AFF471E7E9A9A00D597DB /* Resources */,
+				F94D9B8A1CCC431E04602EEE /* [CP] Embed Pods Frameworks */,
+				922D0A0C17D0CD37D3208855 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -140,13 +175,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		922D0A0C17D0CD37D3208855 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StarsSwift/Pods-StarsSwift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3D445301CA8A8C5CB98A820 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F94D9B8A1CCC431E04602EEE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StarsSwift/Pods-StarsSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		684AFF451E7E9A9A00D597DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				684AFF531E7E9A9A00D597DB /* GameViewController.swift in Sources */,
+				684AFF651E7ED28100D597DB /* StarsRender.swift in Sources */,
 				684AFF4D1E7E9A9A00D597DB /* AppDelegate.swift in Sources */,
+				684AFF671E7ED64100D597DB /* StarsRenderLoop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +350,7 @@
 		};
 		684AFF601E7E9A9A00D597DB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CE12BFF0A5896EB3E120E46 /* Pods-StarsSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CUR72C8558;
@@ -272,12 +358,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Protei.StarsSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StarsSwift/GVRK-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		684AFF611E7E9A9A00D597DB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C1283298CA12E4031991618 /* Pods-StarsSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CUR72C8558;
@@ -285,6 +373,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Protei.StarsSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StarsSwift/GVRK-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -308,6 +397,7 @@
 				684AFF611E7E9A9A00D597DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
