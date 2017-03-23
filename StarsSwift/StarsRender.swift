@@ -58,6 +58,8 @@ class StarsRenderer: NSObject, GVRCardboardViewDelegate   {
      private var  _uniform_warp_factor_fragment:GLfloat = 0;
      private var  _uniform_brightness:GLfloat = 0;
      private var  _vertex_buffer:GLuint = 0;
+     
+     private var vao:GLuint = 0;
     
      
      
@@ -162,6 +164,9 @@ class StarsRenderer: NSObject, GVRCardboardViewDelegate   {
 //          if(loadShaders()) {
           loadShaders()
           
+          glGenVertexArrays(1, &vao);
+          glBindVertexArray(vao);
+          
           
           
           _offset_position[0] = 0.0;
@@ -233,61 +238,9 @@ class StarsRenderer: NSObject, GVRCardboardViewDelegate   {
                glBufferData(GLenum(GL_ARRAY_BUFFER), GLsizeiptr(totalBufferSize)*4,
                             _vertices, GLenum(GL_STATIC_DRAW));
 
-               
-//          }
-          
-     }
-     
-     func cardboardView(_ cardboardView: GVRCardboardView!, draw eye: GVREye, with headTransform: GVRHeadTransform!) {
-          
-          let viewport:CGRect = headTransform.viewport(for: eye);
-          glViewport(GLint(viewport.origin.x), GLint(viewport.origin.y), GLsizei(viewport.size.width), GLsizei(viewport.size.height));
-          glScissor(GLint(viewport.origin.x), GLint(viewport.origin.y), GLsizei(viewport.size.width), GLsizei(viewport.size.height));
-          
-          // Get the head matrix.
-          var head_from_start_matrix: GLKMatrix4 = headTransform.headPoseInStartSpace()
-          
-          // Get this eye's matrices.
-          var projection_matrix: GLKMatrix4 = headTransform.projectionMatrix(for: eye, near: 0.1, far: 100.0); //projectionMatrixForEye:eye near:0.1f far:100.0f];
-          var eye_from_head_matrix: GLKMatrix4 = headTransform.eye(fromHeadMatrix: eye); //eyeFromHeadMatrix:eye];
+        
           
           
-          
-          glUseProgram(_shader_program);
-          
-          print(_warp_factor);
-          
-          // Set the uniform values that will be used by our shader.
-          glUniform3fv(_uniform_offset_position, 1, _offset_position);
-          glUniform3fv(_uniform_offset_velocity, 1, _offset_velocity);
-          glUniform1f(GLint(_uniform_warp_factor_vertex), _warp_factor);
-          glUniform1f(GLint(_uniform_warp_factor_fragment), _warp_factor);
-          glUniform1f(GLint(_uniform_brightness), 1.0);
-          
-          
-          
-          // Set the uniform matrix values that will be used by our shader.
-          
-          withUnsafePointer(to: &projection_matrix.m) {
-               $0.withMemoryRebound(to: GLfloat.self, capacity: MemoryLayout.size(ofValue: projection_matrix.m)) {
-                    glUniformMatrix4fv(_projection_matrix, 1, GLboolean(false), $0)
-               }
-          }
-          
-          withUnsafePointer(to: &eye_from_head_matrix.m) {
-               $0.withMemoryRebound(to: GLfloat.self, capacity: MemoryLayout.size(ofValue: eye_from_head_matrix.m)) {
-                    glUniformMatrix4fv(_eye_from_head_matrix, 1, GLboolean(false), $0)
-               }
-          }
-          
-          withUnsafePointer(to: &head_from_start_matrix.m) {
-               $0.withMemoryRebound(to: GLfloat.self, capacity: MemoryLayout.size(ofValue: head_from_start_matrix.m)) {
-                    glUniformMatrix4fv(_head_from_state_matrix, 1, GLboolean(false), $0)
-               }
-          }
-          
-     
- 
           // Draw our polygons.
           glBindBuffer(GLenum(GL_ARRAY_BUFFER), _vertex_buffer);
           let size = Int(MemoryLayout<GLfloat>.size) * 6
@@ -318,6 +271,63 @@ class StarsRenderer: NSObject, GVRCardboardViewDelegate   {
           
           glEnableVertexAttribArray(GLuint(_attrib_color));
           
+          glBindVertexArray(0);
+
+//          }
+          
+     }
+     
+     func cardboardView(_ cardboardView: GVRCardboardView!, draw eye: GVREye, with headTransform: GVRHeadTransform!) {
+          
+          let viewport:CGRect = headTransform.viewport(for: eye);
+          glViewport(GLint(viewport.origin.x), GLint(viewport.origin.y), GLsizei(viewport.size.width), GLsizei(viewport.size.height));
+          glScissor(GLint(viewport.origin.x), GLint(viewport.origin.y), GLsizei(viewport.size.width), GLsizei(viewport.size.height));
+          
+          // Get the head matrix.
+          var head_from_start_matrix: GLKMatrix4 = headTransform.headPoseInStartSpace()
+          
+          // Get this eye's matrices.
+          var projection_matrix: GLKMatrix4 = headTransform.projectionMatrix(for: eye, near: 0.1, far: 100.0); //projectionMatrixForEye:eye near:0.1f far:100.0f];
+          var eye_from_head_matrix: GLKMatrix4 = headTransform.eye(fromHeadMatrix: eye); //eyeFromHeadMatrix:eye];
+          
+        
+          
+          glBindVertexArray(vao);
+          
+          glUseProgram(_shader_program);
+          
+          // Set the uniform matrix values that will be used by our shader.
+          
+          withUnsafePointer(to: &projection_matrix.m) {
+               $0.withMemoryRebound(to: GLfloat.self, capacity: MemoryLayout.size(ofValue: projection_matrix.m)) {
+                    glUniformMatrix4fv(_projection_matrix, 1, GLboolean(false), $0)
+               }
+          }
+          
+          withUnsafePointer(to: &eye_from_head_matrix.m) {
+               $0.withMemoryRebound(to: GLfloat.self, capacity: MemoryLayout.size(ofValue: eye_from_head_matrix.m)) {
+                    glUniformMatrix4fv(_eye_from_head_matrix, 1, GLboolean(false), $0)
+               }
+          }
+          
+          withUnsafePointer(to: &head_from_start_matrix.m) {
+               $0.withMemoryRebound(to: GLfloat.self, capacity: MemoryLayout.size(ofValue: head_from_start_matrix.m)) {
+                    glUniformMatrix4fv(_head_from_state_matrix, 1, GLboolean(false), $0)
+               }
+          }
+          
+          
+          
+          // Set the uniform values that will be used by our shader.
+          glUniform3fv(_uniform_offset_position, 1, _offset_position);
+          glUniform3fv(_uniform_offset_velocity, 1, _offset_velocity);
+          glUniform1f(GLint(_uniform_warp_factor_vertex), _warp_factor);
+          glUniform1f(GLint(_uniform_warp_factor_fragment), _warp_factor);
+          glUniform1f(GLint(_uniform_brightness), 1.0);
+          
+          
+          
+          
           
           
           if (_warp_factor < 0.5) {
@@ -325,8 +335,10 @@ class StarsRenderer: NSObject, GVRCardboardViewDelegate   {
           } else {
                glDrawArrays(GLenum(GL_LINES), 0, VERTEX_COUNT);
           }
-          glDisableVertexAttribArray(GLuint(_attrib_position));
-          glDisableVertexAttribArray(GLuint(_attrib_color));
+          
+          glBindVertexArray(0);
+          //glDisableVertexAttribArray(GLuint(_attrib_position));
+          //glDisableVertexAttribArray(GLuint(_attrib_color));
           
           
      }
